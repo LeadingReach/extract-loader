@@ -1,12 +1,11 @@
 {
   "name": "extract-loader",
-  "version": "3.2.0",
+  "version": "4.0.2",
   "description": "webpack loader to extract HTML and CSS from the bundle",
   "main": "lib/extractLoader.js",
   "scripts": {
     "build": "babel src -d lib",
     "lint": "eslint src --fix",
-
     "test": "cross-env NODE_ENV=test jest",
     "posttest": "eslint src test",
     "release": "standard-version",
@@ -33,14 +32,8 @@
     "node": ">= 16.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/register": "^7.14.5",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^27.5.1",
-    "babel-plugin-transform-import-meta": "^2.1.1",
-    "chai": "^4.1.0",
-    "chai-fs": "^2.0.0",
+    "@babel/cli": "~7",
+    "babel-jest": "~27",
     "cross-env": "7",
     "css-loader": "^6.6.0",
     "eslint": "^8.2.0",
@@ -60,16 +53,17 @@
     "rimraf": "^3.0.2",
     "standard-version": "9",
     "style-loader": "3",
-    "webpack": "^5.68.0",
-    "webpack-command": "0.5"
+    "webpack": "~5"
   },
   "dependencies": {
-    "@babel/core": "^7.17.4",
-    "@babel/preset-env": "^7.14.5",
-    "@babel/runtime": "^7.14.6",
-    "babel-plugin-add-module-exports": "^1.0.4",
-    "btoa": "^1.2.1",
-    "resolve": "^1.8.1"
+    "@babel/core": "~7",
+    "@babel/preset-env": "~7",
+    "@babel/runtime": "~7",
+    "babel-plugin-add-module-exports": "~1",
+    "@babel/plugin-transform-runtime": "~7",
+    "@babel/register": "~7",
+    "btoa": "~1.2",
+    "resolve": "~1"
   },
   "files": [
     "lib"
