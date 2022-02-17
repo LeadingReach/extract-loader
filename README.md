@@ -17,6 +17,7 @@ extract-loader
 - audit fixes
 - eslint updated to an actual rule set and linter fixed
 - had to make everything commonjs
+- update lint / test
 
 we need to maintain this until we are done with angular templates as separate files.
 
@@ -24,7 +25,7 @@ we need to maintain this until we are done with angular templates as separate fi
 ## alternatives
 - move off angular
 - not extract to html (use strings for templates)
-
+- file-loader will eventually (probably) output files making extract-loader redundant.
 
 # original readme
 

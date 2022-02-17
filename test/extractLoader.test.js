@@ -213,7 +213,7 @@ describe("extractLoader", () => {
                 throw new Error("Did not throw expected error");
             },
             message => {
-                expect(message).toMatch(/SyntaxError: unknown: Missing semicolon/);
+                expect(message).toMatch(/Missing semicolon/);
             }
         ));
     it("should report resolve errors", () =>

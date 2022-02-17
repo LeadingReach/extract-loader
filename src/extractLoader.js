@@ -81,24 +81,23 @@ function evalDependencyGraph({
     }
 
     async function evalModule(src2, filename2) {
-        const newsrc = babel.transform(
-            `const __filename="${filename2}"; ${src2}`,
-            {
-                babelrc: false,
-
-                presets: [
-                    [
-                        babelPreset,
-                        {
-                            modules: "commonjs",
-                            targets: { node: "current" },
-                        },
-                    ],
+        /* this can't handle converting import.meta.url so can't be used with ES modules */
+        const newsrc = babel.transform(src2, {
+            babelrc: false,
+            filename: filename2,
+            presets: [
+                [
+                    babelPreset,
+                    {
+                        modules: "commonjs",
+                        targets: { node: "current" },
+                    },
                 ],
-                plugins: [babelPlug],
-            }
-        ).code;
-
+            ],
+            plugins: [babelPlug],
+        }).code;
+        /* this can't handle modules since module support only happens with a flag  --experimental-vm-modules  */
+        /* ref: https://nodejs.org/api/vm.html#class-vmmodule */
         const script = new vm.Script(newsrc, {
             filename: filename2,
 
