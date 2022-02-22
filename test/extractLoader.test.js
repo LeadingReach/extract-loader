@@ -231,7 +231,7 @@ describe("extractLoader", () => {
                 throw new Error("Did not throw expected error");
             },
             message => {
-                expect(message).toMatch(/Error: Can't resolve 'does-not-exist'/);
+                expect(message).toMatch(/Error: Can't resolve '\.\/does-not-exist'/);
             }
         ));
     it("should not leak globals when there is an error during toString()", () => {

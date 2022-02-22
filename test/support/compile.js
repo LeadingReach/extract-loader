@@ -28,7 +28,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "file-loader",
                                     options: {
-                                        esModule: false,
+                                        esModule: true,
 
                                         // appending -dist so we can check if url rewriting is working
                                         name: "[name]-dist.[ext]",
@@ -46,7 +46,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "file-loader",
                                     options: {
-                                        esModule: false,
+                                        esModule: true,
                                         name: "[name]-dist.[ext]",
                                     },
                                 },
@@ -58,7 +58,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                     loader: "html-loader",
                                     options: {
                                         sources: true, /* ["img:src", "link:href"]*/
-                                        esModule: false
+                                        esModule: true
 
                                     },
                                 },
@@ -71,7 +71,7 @@ function compile({testModule, publicPath, loaderOptions}) {
 
                                     loader: "file-loader",
                                     options: {
-                                        esModule: false,
+                                        esModule: true,
 
                                         name: "[name]-dist.[ext]",
                                     },
@@ -83,7 +83,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "css-loader",
                                     options: {
-                                        esModule: false,
+                                        esModule: true,
                                         sourceMap: true,
                                     },
                                 },
@@ -95,7 +95,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "file-loader",
                                     options: {
-                                        esModule: false,
+                                        esModule: true,
 
                                         name: "[name]-dist.[ext]",
                                     },

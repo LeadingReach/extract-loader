@@ -6,6 +6,7 @@ const btoa = require("btoa");
 const babel = require("@babel/core");
 const babelPlug = require("babel-plugin-add-module-exports");
 const babelPreset = require("@babel/preset-env");
+
 /**
  * @returns {string}
  */
@@ -33,7 +34,12 @@ function evalDependencyGraph({
     function loadModule(filenameP) {
         return new Promise((resolve2, reject) => {
             // loaderContext.loadModule automatically calls loaderContext.addDependency for all requested modules
-            loaderContext.loadModule(filenameP, (error, src2) => {
+
+            let newFN = filenameP;
+            if (filenameP.match(/^[\w].*/)) {
+                newFN = `./${filenameP}`; // files have to be relative if not specified as such.
+            }
+            loaderContext.loadModule(newFN, (error, src2) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -96,9 +102,14 @@ function evalDependencyGraph({
             ],
             plugins: [babelPlug],
         }).code;
+
         /* this can't handle modules since module support only happens with a flag  --experimental-vm-modules  */
         /* ref: https://nodejs.org/api/vm.html#class-vmmodule */
-        const script = new vm.Script(newsrc, {
+        const noimportsrc = newsrc.replaceAll(
+            /new\s+URL\s*\(([@"'.\-/\\\w]+)\s*(,\s*[.\w]+)*\s*\)/g,
+            "require($1)"
+        );
+        const script = new vm.Script(noimportsrc, {
             filename: filename2,
 
             displayErrors: true,
@@ -248,6 +259,7 @@ async function extractLoader(src) {
 
         return publicPath === "auto" ? "" : publicPath;
     }
+
     /* eslint-enable complexity */
 
     const done = this.async();
