@@ -1,18 +1,19 @@
 {
   "name": "extract-loader",
-  "version": "3.2.0",
+  "version": "4.0.2",
   "description": "webpack loader to extract HTML and CSS from the bundle",
   "main": "lib/extractLoader.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "cross-env NODE_ENV=test nyc mocha -R spec",
+    "lint": "eslint src --fix",
+    "test": "cross-env NODE_ENV=test jest",
     "posttest": "eslint src test",
     "release": "standard-version",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peerigon/extract-loader.git"
+    "url": "git+https://github.com/leadingreach/extract-loader.git"
   },
   "keywords": [
     "webpack",
@@ -22,43 +23,47 @@
     "css"
   ],
   "author": "peerigon <developers@peerigon.com>",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/peerigon/extract-loader/issues"
   },
   "homepage": "https://github.com/peerigon/extract-loader#readme",
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 16.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^5.0.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.0",
-    "chai-fs": "^2.0.0",
-    "cross-env": "^5.2.0",
-    "css-loader": "^1.0.0",
-    "eslint": "^5.4.0",
-    "eslint-config-peerigon": "^15.0.2",
-    "file-loader": "^5.0.2",
-    "html-loader": "^0.5.5",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
-    "rimraf": "^2.6.2",
-    "standard-version": "^4.4.0",
-    "style-loader": "^0.23.0",
-    "webpack": "^4.17.1",
-    "webpack-command": "^0.4.1"
+    "@babel/cli": "~7",
+    "babel-jest": "~27",
+    "cross-env": "7",
+    "css-loader": "^6.6.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "6",
+    "html-loader": "3",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
+    "regenerator-runtime": "^0.13.9",
+    "rimraf": "^3.0.2",
+    "standard-version": "9",
+    "style-loader": "3",
+    "webpack": "~5"
   },
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-runtime": "^6.26.0",
-    "btoa": "^1.2.1",
-    "loader-utils": "^1.1.0",
-    "resolve": "^1.8.1"
+    "@babel/core": "~7",
+    "@babel/preset-env": "~7",
+    "@babel/runtime": "~7",
+    "babel-plugin-add-module-exports": "~1",
+    "@babel/plugin-transform-runtime": "~7",
+    "@babel/register": "~7",
+    "btoa": "~1.2",
+    "resolve": "~1"
   },
   "files": [
     "lib"

@@ -1,5 +1,5 @@
-import path from "path";
-import webpack from "webpack";
+const path = require( "path");
+const webpack = require( "webpack");
 
 const pathToExtractLoader = path.resolve(
     __dirname,
@@ -17,6 +17,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                 output: {
                     path: path.resolve(__dirname, "../dist"),
                     filename: "bundle.js",
+
                     publicPath,
                 },
                 module: {
@@ -27,6 +28,8 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "file-loader",
                                     options: {
+                                        esModule: false,
+
                                         // appending -dist so we can check if url rewriting is working
                                         name: "[name]-dist.[ext]",
                                     },
@@ -43,6 +46,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "file-loader",
                                     options: {
+                                        esModule: false,
                                         name: "[name]-dist.[ext]",
                                     },
                                 },
@@ -53,18 +57,22 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "html-loader",
                                     options: {
-                                        attrs: ["img:src", "link:href"],
-                                        interpolate: true,
+                                        sources: true, /* ["img:src", "link:href"]*/
+                                        esModule: false
+
                                     },
                                 },
                             ],
                         },
                         {
                             test: /\.css$/,
-                            loaders: [
+                            use: [
                                 {
+
                                     loader: "file-loader",
                                     options: {
+                                        esModule: false,
+
                                         name: "[name]-dist.[ext]",
                                     },
                                 },
@@ -75,6 +83,7 @@ function compile({testModule, publicPath, loaderOptions}) {
                                 {
                                     loader: "css-loader",
                                     options: {
+                                        esModule: false,
                                         sourceMap: true,
                                     },
                                 },
@@ -82,10 +91,12 @@ function compile({testModule, publicPath, loaderOptions}) {
                         },
                         {
                             test: /\.jpg$/,
-                            loaders: [
+                            use: [
                                 {
                                     loader: "file-loader",
                                     options: {
+                                        esModule: false,
+
                                         name: "[name]-dist.[ext]",
                                     },
                                 },
@@ -104,5 +115,5 @@ function compile({testModule, publicPath, loaderOptions}) {
         );
     });
 }
-
-export default compile;
+module.exports = compile;
+//export default compile;
